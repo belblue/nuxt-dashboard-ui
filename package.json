@@ -1,0 +1,9 @@
+{
+  "name": "nuxt-dashboard-ui",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.28.1",
+  "scripts": {},
+  "author": "",
+  "license": "MIT"
+}
