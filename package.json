@@ -3,7 +3,20 @@
   "private": true,
   "type": "module",
   "packageManager": "pnpm@10.28.1",
-  "scripts": {},
+  "scripts": {
+    "dev": "pnpm --filter nuxt-dashboard-ui dev",
+    "build": "pnpm --filter nuxt-dashboard-ui build",
+    "dev:playground": "pnpm --filter playground dev",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@nuxt/kit": "^4.3.0",
+    "@nuxt/module-builder": "^1.0.2",
+    "nuxt": "^4.3.0",
+    "typescript": "^5.9.3",
+    "vue": "^3.5.27"
+  }
 }
