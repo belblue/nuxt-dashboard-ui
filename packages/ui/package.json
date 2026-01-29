@@ -1,0 +1,27 @@
+{
+    "name": "nuxt-dashboard-ui",
+    "version": "0.0.1",
+    "type": "module",
+    "license": "MIT",
+    "exports": {
+        ".": {
+            "import": "./dist/module.mjs",
+            "require": "./dist/module.cjs"
+        }
+    },
+    "main": "./dist/module.cjs",
+    "module": "./dist/module.mjs",
+    "types": "./dist/types.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "nuxt-module-build --stub",
+        "build": "nuxt-module-build",
+        "prepublishOnly": "pnpm build"
+    },
+    "peerDependencies": {
+        "nuxt": "^3.0.0"
+    },
+    "devDependencies": {}
+}
