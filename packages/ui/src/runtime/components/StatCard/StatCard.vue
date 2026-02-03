@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, useId } from "vue";
 
 /**
  * StatCard
@@ -11,7 +11,6 @@ import { computed } from "vue";
  * <DStatCard title="Revenue" :value="12500" trend="up" :trend-value="12" />
  */
 
-// Define what props the component accepts
 interface StatCardProps {
   title: string;
   value: number | string;
@@ -28,7 +27,13 @@ const props = withDefaults(defineProps<StatCardProps>(), {
   locale: "de-DE",
 });
 
-// Computed class for trend styling
+const emit = defineEmits<{
+  click: [];
+}>();
+
+// SSR-safe ID for aria-labelledby
+const titleId = useId();
+
 const trendClass = computed(() => {
   return {
     "stat-card__trend": true,
@@ -38,15 +43,18 @@ const trendClass = computed(() => {
   };
 });
 
-const emit = defineEmits<{
-  click: [];
-}>();
 const handleClick = () => {
   if (props.clickable) {
     emit("click");
-    console.log("clicked");
   }
 };
+
+const trendLabel = computed(() => {
+  if (props.trendValue === undefined) return "";
+  if (props.trend === "up") return `Increased by ${props.trendValue}`;
+  if (props.trend === "down") return `Decreased by ${props.trendValue}`;
+  return `No change: ${props.trendValue}`;
+});
 
 const formattedValue = computed(() => {
   if (typeof props.value === "number") {
@@ -57,88 +65,56 @@ const formattedValue = computed(() => {
 </script>
 
 <template>
-  <div :class="[{ pointer: clickable }, 'stat-card']" @click="handleClick">
+  <article
+    class="stat-card"
+    :class="{ 'stat-card--clickable': clickable }"
+    role="region"
+    :aria-labelledby="titleId"
+    v-bind="clickable ? { tabindex: 0, role: 'button' } : {}"
+    @click="handleClick"
+    @keydown.enter="handleClick"
+    @keydown.space.prevent="handleClick"
+  >
     <template v-if="loading">
-      <h3 class="skeleton skeleton--title"></h3>
+      <div class="skeleton skeleton--title"></div>
       <div class="skeleton skeleton--value"></div>
-      <p class="skeleton skeleton--trend"></p>
+      <div class="skeleton skeleton--trend"></div>
     </template>
 
     <template v-else>
-      <div class="">
-        <slot name="icon"> </slot>
-        <!--icon slot-->
-
-        <h3 class="stat-card__title">{{ title }}</h3>
-        <div class="stat-card__value">
-          <slot name="value" :formatted="formattedValue">
-            <!--value slot with prop-->
-            {{ formattedValue
-            }}<!--fallback-->
-          </slot>
-        </div>
-        <p v-if="trendValue !== undefined" :class="trendClass">
-          <span>{{ trend === "up" ? "↑" : trend === "down" ? "↓" : "→" }}</span>
-          {{ trendValue }}
-        </p>
+      <slot name="icon" />
+      <h3 :id="titleId" class="stat-card__title">{{ title }}</h3>
+      <div class="stat-card__value">
+        <slot name="value" :formatted="formattedValue">
+          {{ formattedValue }}
+        </slot>
       </div>
+      <p v-if="trendValue !== undefined" :class="trendClass">
+        <span aria-hidden="true">{{ trend === "up" ? "↑" : trend === "down" ? "↓" : "→" }}</span>
+        <span class="sr-only">{{ trendLabel }}</span>
+        <span aria-hidden="true">{{ trendValue }}</span>
+      </p>
     </template>
-  </div>
+  </article>
 </template>
 
 <style scoped>
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-}
-
-.skeleton {
-  background: #e5e7eb;
-  border-radius: 4px;
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-.skeleton--title {
-  height: 14px;
-  width: 60%;
-  margin-bottom: 0.5rem;
-}
-
-.skeleton--value {
-  height: 32px;
-  width: 80%;
-  margin-bottom: 0.5rem;
-}
-
-.skeleton--trend {
-  height: 14px;
-  width: 40%;
-}
-
-.dark .skeleton {
-  background: #374151;
-}
-/* CSS Variables for theming - users can override these */
+/* CSS Variables for theming — consumers can override these */
 .stat-card {
   --stat-card-bg: #ffffff;
   --stat-card-border: #e5e7eb;
   --stat-card-radius: 0.75rem;
   --stat-card-padding: 1.5rem;
   --stat-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-
   --stat-card-title-color: #6b7280;
   --stat-card-value-color: #111827;
-
   --stat-card-trend-up: #10b981;
   --stat-card-trend-down: #ef4444;
   --stat-card-trend-neutral: #6b7280;
+  --stat-card-skeleton: #e5e7eb;
+  --stat-card-hover-bg: #f9fafb;
+  --stat-card-active-bg: #f3f4f6;
 
-  /* Card styling */
   background: var(--stat-card-bg);
   border: 1px solid var(--stat-card-border);
   border-radius: var(--stat-card-radius);
@@ -181,23 +157,87 @@ const formattedValue = computed(() => {
   color: var(--stat-card-trend-neutral);
 }
 
-/* Dark mode support */
+/* Clickable variant */
+.stat-card--clickable {
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.stat-card--clickable:hover,
+.stat-card--clickable:focus-visible {
+  background: var(--stat-card-hover-bg);
+  outline: 2px solid var(--stat-card-trend-up);
+  outline-offset: 2px;
+}
+
+.stat-card--clickable:active {
+  background: var(--stat-card-active-bg);
+  transform: scale(0.98);
+}
+
+/* Loading skeleton */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.skeleton {
+  background: var(--stat-card-skeleton);
+  border-radius: 4px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton--title {
+  height: 14px;
+  width: 60%;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton--value {
+  height: 32px;
+  width: 80%;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton--trend {
+  height: 14px;
+  width: 40%;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Dark mode via .dark class */
 .dark .stat-card {
   --stat-card-bg: #1f2937;
   --stat-card-border: #374151;
   --stat-card-title-color: #9ca3af;
   --stat-card-value-color: #f9fafb;
-}
-.pointer {
-  cursor: pointer;
-}
-.pointer:focus,
-.pointer:hover {
-  --stat-card-bg: #8910b93e;
+  --stat-card-skeleton: #374151;
+  --stat-card-hover-bg: #374151;
+  --stat-card-active-bg: #4b5563;
 }
 
-.pointer:active {
-  --stat-card-bg: #8910b9; /* dark purple on click */
-  transform: scale(0.98); /* subtle press effect */
+/* Dark mode via prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+  .stat-card {
+    --stat-card-bg: #1f2937;
+    --stat-card-border: #374151;
+    --stat-card-title-color: #9ca3af;
+    --stat-card-value-color: #f9fafb;
+    --stat-card-skeleton: #374151;
+    --stat-card-hover-bg: #374151;
+    --stat-card-active-bg: #4b5563;
+  }
 }
 </style>
