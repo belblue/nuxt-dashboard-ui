@@ -77,6 +77,38 @@ setTimeout(() => {
       <DBadge size="sm">Small</DBadge>
       <DBadge size="lg" variant="info">Large</DBadge>
     </div>
+
+    <h2>Skeleton Loader</h2>
+    <div class="skeleton-demos">
+      <div class="skeleton-demo">
+        <h3>Text (3 lines)</h3>
+        <DSkeletonLoader variant="text" :count="3" />
+      </div>
+      <div class="skeleton-demo">
+        <h3>Circle</h3>
+        <DSkeletonLoader variant="circle" />
+      </div>
+      <div class="skeleton-demo">
+        <h3>Rectangle</h3>
+        <DSkeletonLoader variant="rect" height="80px" />
+      </div>
+      <div class="skeleton-demo">
+        <h3>Card</h3>
+        <DSkeletonLoader variant="card" />
+      </div>
+      <div class="skeleton-demo">
+        <h3>Static (no animation)</h3>
+        <DSkeletonLoader variant="text" :animated="false" :count="2" />
+      </div>
+      <div class="skeleton-demo">
+        <h3>Hydration-first</h3>
+        <DSkeletonLoader variant="card" hydrate>
+          <p style="padding: 1rem; background: #d1fae5; border-radius: 0.75rem;">
+            This content appeared after hydration!
+          </p>
+        </DSkeletonLoader>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -109,5 +141,23 @@ setTimeout(() => {
   flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
+}
+
+.skeleton-demos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.skeleton-demo {
+  background: #ffffff;
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.skeleton-demo h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  color: #6b7280;
 }
 </style>
