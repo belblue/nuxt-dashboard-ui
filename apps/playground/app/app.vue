@@ -45,6 +45,25 @@ setTimeout(() => {
         :loading="isLoading"
       />
     </div>
+
+    <h2>Data Table</h2>
+    <DDataTable
+      :columns="[
+        { key: 'name', label: 'Name', sortable: true },
+        { key: 'email', label: 'Email' },
+        { key: 'role', label: 'Role', sortable: true },
+        { key: 'status', label: 'Status', align: 'center' },
+      ]"
+      :rows="[
+        { id: 1, name: 'Alice Johnson', email: 'alice@example.com', role: 'Admin', status: 'Active' },
+        { id: 2, name: 'Bob Smith', email: 'bob@example.com', role: 'Editor', status: 'Active' },
+        { id: 3, name: 'Carol White', email: 'carol@example.com', role: 'Viewer', status: 'Inactive' },
+        { id: 4, name: 'Dave Brown', email: 'dave@example.com', role: 'Editor', status: 'Active' },
+      ]"
+      caption="Team members"
+      striped
+      :loading="isLoading"
+    />
   </div>
 </template>
 
@@ -64,5 +83,11 @@ setTimeout(() => {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
+}
+
+.playground h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #111827;
 }
 </style>

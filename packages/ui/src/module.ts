@@ -1,4 +1,4 @@
-import { defineNuxtModule, addComponentsDir, createResolver } from "nuxt/kit";
+import { defineNuxtModule, addComponentsDir, addImports, createResolver } from "nuxt/kit";
 
 export interface ModuleOptions {
   /**
@@ -27,5 +27,12 @@ export default defineNuxtModule<ModuleOptions>({
       path: resolve("./runtime/components"),
       prefix: options.prefix,
     });
+
+    // Auto-import composables
+    addImports([
+      { name: 'useDataTable', from: resolve('./runtime/composables/useDataTable') },
+      { name: 'useSortQuerySync', from: resolve('./runtime/composables/useSortQuerySync') },
+      { name: 'useTableSort', from: resolve('./runtime/composables/useTableSort') },
+    ]);
   },
 });
