@@ -64,6 +64,19 @@ setTimeout(() => {
       striped
       :loading="isLoading"
     />
+
+    <h2>Badges</h2>
+    <div class="badges-grid">
+      <DBadge variant="success" dot>Active</DBadge>
+      <DBadge variant="danger" dot>Offline</DBadge>
+      <DBadge variant="warning">Pending</DBadge>
+      <DBadge variant="info" pill>New</DBadge>
+      <DBadge variant="default" outline>Draft</DBadge>
+      <DBadge variant="success" outline pill>Approved</DBadge>
+      <DBadge variant="danger" dismissible>Remove me</DBadge>
+      <DBadge size="sm">Small</DBadge>
+      <DBadge size="lg" variant="info">Large</DBadge>
+    </div>
   </div>
 </template>
 
@@ -89,5 +102,12 @@ setTimeout(() => {
   margin-top: 2rem;
   margin-bottom: 1rem;
   color: #111827;
+}
+
+.badges-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
 }
 </style>
