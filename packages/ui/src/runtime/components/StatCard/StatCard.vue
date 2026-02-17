@@ -217,8 +217,19 @@ const formattedValue = computed(() => {
   border: 0;
 }
 
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .stat-card--clickable {
+    transition: none;
+  }
+
+  .skeleton {
+    animation: none;
+  }
+}
+
 /* Dark mode via .dark class */
-.dark .stat-card {
+:global(.dark) .stat-card {
   --stat-card-bg: #1f2937;
   --stat-card-border: #374151;
   --stat-card-title-color: #9ca3af;

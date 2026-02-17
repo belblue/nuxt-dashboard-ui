@@ -347,6 +347,7 @@ const hasCellSlot = (columnKey: string): boolean => {
 
 .data-table__header-cell--sortable {
   cursor: pointer;
+  min-height: 44px;
 }
 
 .data-table__header-cell--sortable:hover {
@@ -445,8 +446,15 @@ const hasCellSlot = (columnKey: string): boolean => {
   border: 0;
 }
 
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .data-table__skeleton {
+    animation: none;
+  }
+}
+
 /* Dark mode via .dark class */
-.dark .data-table {
+:global(.dark) .data-table {
   --dt-bg: #1f2937;
   --dt-border-color: #374151;
   --dt-header-bg: #111827;

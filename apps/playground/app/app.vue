@@ -209,6 +209,52 @@ function toggleDark() {
         </DEmptyState>
       </template>
     </DDataTable>
+
+    <h2>Tooltip</h2>
+    <div class="tooltip-demos">
+      <DTooltip content="Top tooltip (default)" :delay="0">
+        <button class="demo-btn">Top</button>
+      </DTooltip>
+
+      <DTooltip content="Bottom tooltip" placement="bottom" :delay="0">
+        <button class="demo-btn">Bottom</button>
+      </DTooltip>
+
+      <DTooltip content="Left tooltip" placement="left" :delay="0">
+        <button class="demo-btn">Left</button>
+      </DTooltip>
+
+      <DTooltip content="Right tooltip" placement="right" :delay="0">
+        <button class="demo-btn">Right</button>
+      </DTooltip>
+
+      <DTooltip :delay="0">
+        <button class="demo-btn">Rich content</button>
+        <template #content>
+          <strong>Bold</strong> and <em>italic</em> tooltip
+        </template>
+      </DTooltip>
+
+      <DTooltip content="You cannot see me" disabled>
+        <button class="demo-btn" disabled>Disabled</button>
+      </DTooltip>
+
+      <DTooltip content="Focus-only tooltip" trigger="focus">
+        <input type="text" placeholder="Focus me" class="demo-input" />
+      </DTooltip>
+
+      <p class="demo-text">
+        Hover over this
+        <DTooltip content="Tooltip on inline text" :delay="0">
+          <span style="text-decoration: underline dotted; cursor: help">underlined term</span>
+        </DTooltip>
+        to see the tooltip.
+      </p>
+
+      <DTooltip content="This tooltip has a longer description that wraps to multiple lines within the max-width constraint." :delay="0">
+        <button class="demo-btn">Long text</button>
+      </DTooltip>
+    </div>
   </div>
 </template>
 
@@ -246,6 +292,12 @@ function toggleDark() {
   padding: 0;
   cursor: pointer;
   line-height: 1;
+  border-radius: 9999px;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }
 
 .theme-toggle__track {
@@ -385,6 +437,35 @@ function toggleDark() {
   color: #9ca3af;
 }
 
+.tooltip-demos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.demo-input {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.playground.dark .demo-input {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f9fafb;
+}
+
+.demo-text {
+  color: #374151;
+}
+
+.playground.dark .demo-text {
+  color: #d1d5db;
+}
+
 .demo-btn {
   padding: 0.5rem 1rem;
   background: #3b82f6;
@@ -397,5 +478,46 @@ function toggleDark() {
 
 .demo-btn:hover {
   background: #2563eb;
+}
+
+.demo-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .playground {
+    padding: 1rem;
+  }
+
+  .playground h1 {
+    font-size: 1.25rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skeleton-demos {
+    grid-template-columns: 1fr;
+  }
+
+  .empty-state-demos {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reduced motion for playground transitions */
+@media (prefers-reduced-motion: reduce) {
+  .playground {
+    transition: none;
+  }
+
+  .theme-toggle__track,
+  .theme-toggle__icon,
+  .theme-toggle__thumb {
+    transition: none;
+  }
 }
 </style>

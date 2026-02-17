@@ -102,4 +102,35 @@ const classVariant = computed(()=>{
     transform: translateX(200%);
   }
 }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar__fill {
+    transition: none;
+  }
+
+  .progress-bar__fill--indeterminate {
+    animation: none;
+  }
+}
+
+/* Dark mode via .dark class */
+:global(.dark) .progress-bar__track {
+  background: #374151;
+}
+
+:global(.dark) .progress-bar__label {
+  color: #f9fafb;
+}
+
+/* Dark mode via prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+  .progress-bar__track {
+    background: #374151;
+  }
+
+  .progress-bar__label {
+    color: #f9fafb;
+  }
+}
 </style>

@@ -111,17 +111,17 @@ defineSlots<{
 
 /* Sizes */
 .badge--sm {
-  font-size: 0.6875rem;
-  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  padding: 0.1875rem 0.5rem;
 }
 
 .badge--md {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   padding: 0.25rem 0.625rem;
 }
 
 .badge--lg {
-  font-size: 0.875rem;
+  font-size: 1rem;
   padding: 0.375rem 0.75rem;
 }
 
@@ -205,6 +205,18 @@ defineSlots<{
   font-size: 1em;
   line-height: 1;
   opacity: 0.6;
+  position: relative;
+}
+
+/* Expand touch target to 44x44 without affecting visual size */
+.badge__dismiss::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .badge__dismiss:hover {
@@ -218,7 +230,7 @@ defineSlots<{
 }
 
 /* Dark mode via .dark class */
-.dark .badge {
+:global(.dark) .badge {
   --badge-default-bg: #374151;
   --badge-default-color: #f3f4f6;
   --badge-default-border: #6b7280;

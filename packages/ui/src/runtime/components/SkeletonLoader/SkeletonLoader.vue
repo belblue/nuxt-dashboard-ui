@@ -199,6 +199,13 @@ const showSkeleton = computed(() => {
   border: 0;
 }
 
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-loader__item--animated {
+    animation: none;
+  }
+}
+
 /* Dark mode via .dark class — :global() needed because .dark is on an ancestor outside scoped scope */
 :global(.dark) .skeleton-loader {
   --skeleton-bg: #374151;
