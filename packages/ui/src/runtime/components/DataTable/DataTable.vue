@@ -284,21 +284,21 @@ const hasCellSlot = (columnKey: string): boolean => {
 <style scoped>
 /* CSS Variables for theming — consumers can override these */
 .data-table {
-  --dt-bg: #ffffff;
-  --dt-border-color: #e5e7eb;
+  --dt-bg: #dbeafe;
+  --dt-border-color: #93c5fd;
   --dt-border-radius: 0.75rem;
-  --dt-header-bg: #f9fafb;
-  --dt-header-color: #374151;
+  --dt-header-bg: #bfdbfe;
+  --dt-header-color: #1e3a5f;
   --dt-header-font-weight: 600;
   --dt-cell-padding: 0.75rem 1rem;
   --dt-row-bg: transparent;
-  --dt-row-hover-bg: #f9fafb;
-  --dt-row-stripe-bg: #f3f4f6;
+  --dt-row-hover-bg: #bfdbfe;
+  --dt-row-stripe-bg: #c7d8f5;
   --dt-text-color: #111827;
-  --dt-empty-color: #6b7280;
-  --dt-sort-active-color: #3b82f6;
-  --dt-skeleton-color: #e5e7eb;
-  --dt-focus-ring: 2px solid #3b82f6;
+  --dt-empty-color: #374151;
+  --dt-sort-active-color: #1d4ed8;
+  --dt-skeleton-color: #93c5fd;
+  --dt-focus-ring: 2px solid #1d4ed8;
 
   background: var(--dt-bg);
   border: 1px solid var(--dt-border-color);
@@ -463,21 +463,9 @@ const hasCellSlot = (columnKey: string): boolean => {
   --dt-row-stripe-bg: #1a2332;
   --dt-text-color: #f9fafb;
   --dt-empty-color: #9ca3af;
+  --dt-sort-active-color: #60a5fa;
+  --dt-focus-ring: 2px solid #60a5fa;
   --dt-skeleton-color: #374151;
 }
 
-/* Dark mode via prefers-color-scheme */
-@media (prefers-color-scheme: dark) {
-  .data-table {
-    --dt-bg: #1f2937;
-    --dt-border-color: #374151;
-    --dt-header-bg: #111827;
-    --dt-header-color: #d1d5db;
-    --dt-row-hover-bg: #374151;
-    --dt-row-stripe-bg: #1a2332;
-    --dt-text-color: #f9fafb;
-    --dt-empty-color: #9ca3af;
-    --dt-skeleton-color: #374151;
-  }
-}
 </style>

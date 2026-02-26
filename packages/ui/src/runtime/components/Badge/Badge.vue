@@ -77,20 +77,20 @@ defineSlots<{
 <style scoped>
 /* CSS Variables for theming — consumers can override these */
 .badge {
-  --badge-default-bg: #f3f4f6;
-  --badge-default-color: #1f2937;
-  --badge-default-border: #9ca3af;
+  --badge-default-bg: #dbeafe;
+  --badge-default-color: #1e3a5f;
+  --badge-default-border: #60a5fa;
   --badge-success-bg: #d1fae5;
-  --badge-success-color: #064e3b;
+  --badge-success-color: #065f46;
   --badge-success-border: #34d399;
   --badge-warning-bg: #fef3c7;
-  --badge-warning-color: #78350f;
-  --badge-warning-border: #f59e0b;
+  --badge-warning-color: #92400e;
+  --badge-warning-border: #fbbf24;
   --badge-danger-bg: #fee2e2;
-  --badge-danger-color: #7f1d1d;
+  --badge-danger-color: #991b1b;
   --badge-danger-border: #f87171;
   --badge-info-bg: #dbeafe;
-  --badge-info-color: #1e3a8a;
+  --badge-info-color: #1e40af;
   --badge-info-border: #60a5fa;
   --badge-radius: 6px;
   --badge-pill-radius: 9999px;
@@ -231,41 +231,21 @@ defineSlots<{
 
 /* Dark mode via .dark class */
 :global(.dark) .badge {
-  --badge-default-bg: #374151;
-  --badge-default-color: #f3f4f6;
-  --badge-default-border: #6b7280;
-  --badge-success-bg: #064e3b;
-  --badge-success-color: #a7f3d0;
-  --badge-success-border: #10b981;
-  --badge-warning-bg: #78350f;
-  --badge-warning-color: #fde68a;
-  --badge-warning-border: #f59e0b;
-  --badge-danger-bg: #7f1d1d;
-  --badge-danger-color: #fecaca;
-  --badge-danger-border: #f87171;
-  --badge-info-bg: #1e3a5f;
-  --badge-info-color: #bfdbfe;
-  --badge-info-border: #60a5fa;
+  --badge-default-bg: #1f2937;
+  --badge-default-color: #e5e7eb;
+  --badge-default-border: #4b5563;
+  --badge-success-bg: #052e16;
+  --badge-success-color: #6ee7b7;
+  --badge-success-border: #059669;
+  --badge-warning-bg: #451a03;
+  --badge-warning-color: #fcd34d;
+  --badge-warning-border: #d97706;
+  --badge-danger-bg: #450a0a;
+  --badge-danger-color: #fca5a5;
+  --badge-danger-border: #dc2626;
+  --badge-info-bg: #172554;
+  --badge-info-color: #93c5fd;
+  --badge-info-border: #3b82f6;
 }
 
-/* Dark mode via prefers-color-scheme */
-@media (prefers-color-scheme: dark) {
-  .badge {
-    --badge-default-bg: #374151;
-    --badge-default-color: #f3f4f6;
-    --badge-default-border: #6b7280;
-    --badge-success-bg: #064e3b;
-    --badge-success-color: #a7f3d0;
-    --badge-success-border: #10b981;
-    --badge-warning-bg: #78350f;
-    --badge-warning-color: #fde68a;
-    --badge-warning-border: #f59e0b;
-    --badge-danger-bg: #7f1d1d;
-    --badge-danger-color: #fecaca;
-    --badge-danger-border: #f87171;
-    --badge-info-bg: #1e3a5f;
-    --badge-info-color: #bfdbfe;
-    --badge-info-border: #60a5fa;
-  }
-}
 </style>

@@ -101,19 +101,19 @@ const formattedValue = computed(() => {
 <style scoped>
 /* CSS Variables for theming — consumers can override these */
 .stat-card {
-  --stat-card-bg: #ffffff;
-  --stat-card-border: #e5e7eb;
+  --stat-card-bg: #dbeafe;
+  --stat-card-border: #93c5fd;
   --stat-card-radius: 0.75rem;
   --stat-card-padding: 1.5rem;
-  --stat-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --stat-card-title-color: #6b7280;
+  --stat-card-shadow: 0 1px 3px rgba(29, 78, 216, 0.12);
+  --stat-card-title-color: #1e3a5f;
   --stat-card-value-color: #111827;
-  --stat-card-trend-up: #10b981;
-  --stat-card-trend-down: #ef4444;
-  --stat-card-trend-neutral: #6b7280;
-  --stat-card-skeleton: #e5e7eb;
-  --stat-card-hover-bg: #f9fafb;
-  --stat-card-active-bg: #f3f4f6;
+  --stat-card-trend-up: #065f46;
+  --stat-card-trend-down: #991b1b;
+  --stat-card-trend-neutral: #374151;
+  --stat-card-skeleton: #bfdbfe;
+  --stat-card-hover-bg: #bfdbfe;
+  --stat-card-active-bg: #93c5fd;
 
   background: var(--stat-card-bg);
   border: 1px solid var(--stat-card-border);
@@ -234,21 +234,12 @@ const formattedValue = computed(() => {
   --stat-card-border: #374151;
   --stat-card-title-color: #9ca3af;
   --stat-card-value-color: #f9fafb;
+  --stat-card-trend-up: #10b981;
+  --stat-card-trend-down: #ef4444;
+  --stat-card-trend-neutral: #9ca3af;
   --stat-card-skeleton: #374151;
   --stat-card-hover-bg: #374151;
   --stat-card-active-bg: #4b5563;
 }
 
-/* Dark mode via prefers-color-scheme */
-@media (prefers-color-scheme: dark) {
-  .stat-card {
-    --stat-card-bg: #1f2937;
-    --stat-card-border: #374151;
-    --stat-card-title-color: #9ca3af;
-    --stat-card-value-color: #f9fafb;
-    --stat-card-skeleton: #374151;
-    --stat-card-hover-bg: #374151;
-    --stat-card-active-bg: #4b5563;
-  }
-}
 </style>

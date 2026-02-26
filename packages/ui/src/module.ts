@@ -26,6 +26,8 @@ export default defineNuxtModule<ModuleOptions>({
     await addComponentsDir({
       path: resolve("./runtime/components"),
       prefix: options.prefix,
+      extensions: ['vue'],
+      ignore: ['**/index.ts'],
     });
 
     // Auto-import composables
@@ -33,6 +35,7 @@ export default defineNuxtModule<ModuleOptions>({
       { name: 'useDataTable', from: resolve('./runtime/composables/useDataTable') },
       { name: 'useSortQuerySync', from: resolve('./runtime/composables/useSortQuerySync') },
       { name: 'useTableSort', from: resolve('./runtime/composables/useTableSort') },
+      { name: 'usePagination', from: resolve('./runtime/composables/usePagination') },
     ]);
   },
 });

@@ -56,10 +56,10 @@ const slots = defineSlots<{
 .empty-state {
   --empty-state-padding: 2.5rem 1.5rem;
   --empty-state-gap: 0.75rem;
-  --empty-state-icon-color: #9ca3af;
+  --empty-state-icon-color: #374151;
   --empty-state-icon-size: 3rem;
   --empty-state-title-color: #111827;
-  --empty-state-desc-color: #6b7280;
+  --empty-state-desc-color: #374151;
 
   display: flex;
   flex-direction: column;
@@ -95,17 +95,9 @@ const slots = defineSlots<{
 
 /* Dark mode via .dark class */
 :global(.dark) .empty-state {
-  --empty-state-icon-color: #6b7280;
+  --empty-state-icon-color: #9ca3af;
   --empty-state-title-color: #f9fafb;
   --empty-state-desc-color: #9ca3af;
 }
 
-/* Dark mode via prefers-color-scheme */
-@media (prefers-color-scheme: dark) {
-  .empty-state {
-    --empty-state-icon-color: #6b7280;
-    --empty-state-title-color: #f9fafb;
-    --empty-state-desc-color: #9ca3af;
-  }
-}
 </style>

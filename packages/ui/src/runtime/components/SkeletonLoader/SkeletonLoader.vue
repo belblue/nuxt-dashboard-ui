@@ -212,11 +212,4 @@ const showSkeleton = computed(() => {
   --skeleton-highlight: #4b5563;
 }
 
-/* Dark mode via prefers-color-scheme */
-@media (prefers-color-scheme: dark) {
-  .skeleton-loader {
-    --skeleton-bg: #374151;
-    --skeleton-highlight: #4b5563;
-  }
-}
 </style>

@@ -11,6 +11,13 @@ function toggleDark() {
   isDark.value = !isDark.value;
   document.documentElement.classList.toggle("dark", isDark.value);
 }
+
+const showBasicModal = ref(false);
+const showConfirmModal = ref(false);
+const showFullscreenModal = ref(false);
+
+const paginationPage = ref(1);
+const activeTab = ref("general");
 </script>
 <template>
   <div class="playground" :class="{ dark: isDark }">
@@ -100,16 +107,18 @@ function toggleDark() {
     />
 
     <h2>Badges</h2>
-    <div class="badges-grid">
-      <DBadge variant="success" dot>Active</DBadge>
-      <DBadge variant="danger" dot>Offline</DBadge>
-      <DBadge variant="warning">Pending</DBadge>
-      <DBadge variant="info" pill>New</DBadge>
-      <DBadge variant="default" outline>Draft</DBadge>
-      <DBadge variant="success" outline pill>Approved</DBadge>
-      <DBadge variant="danger" dismissible>Remove me</DBadge>
-      <DBadge size="sm">Small</DBadge>
-      <DBadge size="lg" variant="info">Large</DBadge>
+    <div class="card-wrapper">
+      <div class="badges-grid">
+        <DBadge variant="success" dot>Active</DBadge>
+        <DBadge variant="danger" dot>Offline</DBadge>
+        <DBadge variant="warning">Pending</DBadge>
+        <DBadge variant="info" pill>New</DBadge>
+        <DBadge variant="default" outline>Draft</DBadge>
+        <DBadge variant="success" outline pill>Approved</DBadge>
+        <DBadge variant="danger" dismissible>Remove me</DBadge>
+        <DBadge size="sm">Small</DBadge>
+        <DBadge size="lg" variant="info">Large</DBadge>
+      </div>
     </div>
 
     <h2>Skeleton Loader</h2>
@@ -255,13 +264,87 @@ function toggleDark() {
         <button class="demo-btn">Long text</button>
       </DTooltip>
     </div>
+
+    <h2>Modal</h2>
+    <div class="modal-demos">
+      <button class="demo-btn" @click="showBasicModal = true">Basic Modal</button>
+      <DModal v-model:open="showBasicModal" title="Basic Modal" description="This is a simple modal with a title and description.">
+        <p>Here is some body content inside the modal.</p>
+        <template #footer>
+          <button class="demo-btn" style="background: #4b5563;" @click="showBasicModal = false">Cancel</button>
+          <button class="demo-btn" @click="showBasicModal = false">OK</button>
+        </template>
+      </DModal>
+
+      <button class="demo-btn" @click="showConfirmModal = true">Confirmation Dialog</button>
+      <DModal v-model:open="showConfirmModal" title="Delete item?" description="This action cannot be undone." :close-on-backdrop="false">
+        <p>Are you sure you want to delete this item permanently?</p>
+        <template #footer>
+          <button class="demo-btn" style="background: #4b5563;" @click="showConfirmModal = false">Cancel</button>
+          <button class="demo-btn" style="background: #dc2626;" @click="showConfirmModal = false">Delete</button>
+        </template>
+      </DModal>
+
+      <DModal title="Trigger Slot Modal">
+        <template #trigger="{ open }">
+          <button class="demo-btn" @click="open">Trigger Slot</button>
+        </template>
+        <p>This modal was opened via the trigger slot.</p>
+      </DModal>
+
+      <button class="demo-btn" @click="showFullscreenModal = true">Fullscreen</button>
+      <DModal v-model:open="showFullscreenModal" title="Fullscreen Modal" fullscreen>
+        <p>This modal takes up the entire screen.</p>
+        <template #footer>
+          <button class="demo-btn" @click="showFullscreenModal = false">Close</button>
+        </template>
+      </DModal>
+    </div>
+
+    <h2>Pagination</h2>
+    <div class="card-wrapper">
+      <DPagination v-model:page="paginationPage" :total="200" :per-page="10" />
+    </div>
+
+    <h2>Tabs</h2>
+    <div class="card-wrapper">
+      <h3>Line variant (default)</h3>
+      <DTabs
+        v-model="activeTab"
+        :items="[
+          { key: 'general', label: 'General' },
+          { key: 'security', label: 'Security' },
+          { key: 'billing', label: 'Billing', badge: '3' },
+          { key: 'disabled', label: 'Disabled', disabled: true },
+        ]"
+      >
+        <template #panel-general><p>General settings content goes here.</p></template>
+        <template #panel-security><p>Security settings content goes here.</p></template>
+        <template #panel-billing><p>Billing info and invoices.</p></template>
+        <template #panel-disabled><p>This panel should not be reachable.</p></template>
+      </DTabs>
+
+      <h3>Pill variant</h3>
+      <DTabs
+        :items="[
+          { key: 'overview', label: 'Overview' },
+          { key: 'analytics', label: 'Analytics' },
+          { key: 'reports', label: 'Reports', badge: '12' },
+        ]"
+        variant="pill"
+      >
+        <template #panel-overview><p>Dashboard overview panel.</p></template>
+        <template #panel-analytics><p>Analytics charts and data.</p></template>
+        <template #panel-reports><p>Generated reports list.</p></template>
+      </DTabs>
+    </div>
   </div>
 </template>
 
 <style>
 .playground {
   padding: 2rem;
-  background: #f3f4f6;
+  background: #eff6ff;
   min-height: 100vh;
   transition: background 0.3s, color 0.3s;
 }
@@ -296,7 +379,7 @@ function toggleDark() {
 }
 
 .theme-toggle:focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #1d4ed8;
   outline-offset: 2px;
 }
 
@@ -392,7 +475,7 @@ function toggleDark() {
 }
 
 .skeleton-demo {
-  background: #ffffff;
+  background: #dbeafe;
   border-radius: 0.75rem;
   padding: 1rem;
 }
@@ -404,7 +487,7 @@ function toggleDark() {
 .skeleton-demo h3 {
   margin: 0 0 0.75rem;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: #1e3a5f;
 }
 
 .playground.dark .skeleton-demo h3 {
@@ -418,7 +501,7 @@ function toggleDark() {
 }
 
 .empty-state-demo {
-  background: #ffffff;
+  background: #dbeafe;
   border-radius: 0.75rem;
   padding: 1rem;
 }
@@ -430,11 +513,18 @@ function toggleDark() {
 .empty-state-demo h3 {
   margin: 0 0 0.5rem;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: #1e3a5f;
 }
 
 .playground.dark .empty-state-demo h3 {
   color: #9ca3af;
+}
+
+.modal-demos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
 }
 
 .tooltip-demos {
@@ -459,16 +549,36 @@ function toggleDark() {
 }
 
 .demo-text {
-  color: #374151;
+  color: #1e3a5f;
 }
 
 .playground.dark .demo-text {
   color: #d1d5db;
 }
 
+.card-wrapper {
+  background: #dbeafe;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.playground.dark .card-wrapper {
+  background: #1f2937;
+}
+
+.card-wrapper h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  color: #1e3a5f;
+}
+
+.playground.dark .card-wrapper h3 {
+  color: #9ca3af;
+}
+
 .demo-btn {
   padding: 0.5rem 1rem;
-  background: #3b82f6;
+  background: #1d4ed8;
   color: #fff;
   border: none;
   border-radius: 0.375rem;
@@ -477,11 +587,11 @@ function toggleDark() {
 }
 
 .demo-btn:hover {
-  background: #2563eb;
+  background: #1e40af;
 }
 
 .demo-btn:focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #1d4ed8;
   outline-offset: 2px;
 }
 

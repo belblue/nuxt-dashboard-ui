@@ -67,7 +67,7 @@ const classVariant = computed(()=>{
 
 .progress-bar__track {
   height: 8px;
-  background: #e5e7eb;
+  background: #93c5fd;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -90,7 +90,7 @@ const classVariant = computed(()=>{
 
 .progress-bar__fill--indeterminate {
   width: 50% !important;
-  background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 50%, #3b82f6 100%);
+  background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 50%, #1d4ed8 100%);
   animation: indeterminate-slide 1.5s ease-in-out infinite;
 }
 
@@ -123,14 +123,4 @@ const classVariant = computed(()=>{
   color: #f9fafb;
 }
 
-/* Dark mode via prefers-color-scheme */
-@media (prefers-color-scheme: dark) {
-  .progress-bar__track {
-    background: #374151;
-  }
-
-  .progress-bar__label {
-    color: #f9fafb;
-  }
-}
 </style>

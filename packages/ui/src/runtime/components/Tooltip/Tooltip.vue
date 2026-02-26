@@ -292,12 +292,4 @@ function onTouchStart() {
   --tooltip-shadow: 0 4px 14px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Dark mode via prefers-color-scheme */
-@media (prefers-color-scheme: dark) {
-  .tooltip {
-    --tooltip-bg: #f1f5f9;
-    --tooltip-color: #0f172a;
-    --tooltip-shadow: 0 4px 14px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
-  }
-}
 </style>
