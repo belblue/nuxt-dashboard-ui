@@ -284,21 +284,21 @@ const hasCellSlot = (columnKey: string): boolean => {
 <style scoped>
 /* CSS Variables for theming — consumers can override these */
 .data-table {
-  --dt-bg: #dbeafe;
-  --dt-border-color: #93c5fd;
-  --dt-border-radius: 0.75rem;
-  --dt-header-bg: #bfdbfe;
-  --dt-header-color: #1e3a5f;
+  --dt-bg: var(--color-surface-base, #dce9fb);
+  --dt-border-color: var(--color-border-default, #83b4f0);
+  --dt-border-radius: var(--radius-2xl, 0.75rem);
+  --dt-header-bg: var(--color-surface-hover, #b8d4f8);
+  --dt-header-color: var(--color-text-secondary, #0f3080);
   --dt-header-font-weight: 600;
   --dt-cell-padding: 0.75rem 1rem;
-  --dt-row-bg: transparent;
-  --dt-row-hover-bg: #bfdbfe;
-  --dt-row-stripe-bg: #c7d8f5;
-  --dt-text-color: #111827;
-  --dt-empty-color: #374151;
-  --dt-sort-active-color: #1d4ed8;
-  --dt-skeleton-color: #93c5fd;
-  --dt-focus-ring: 2px solid #1d4ed8;
+  --dt-row-bg: var(--color-page-bg, #f0f7ff);
+  --dt-row-hover-bg: var(--color-surface-base, #dce9fb);
+  --dt-row-stripe-bg: var(--color-surface-hover, #b8d4f8);
+  --dt-text-color: var(--color-text-primary, #111827);
+  --dt-empty-color: var(--color-text-muted, #4b5563);
+  --dt-sort-active-color: var(--color-accent-primary, #2563eb);
+  --dt-skeleton-color: var(--color-border-default, #83b4f0);
+  --dt-focus-ring: 2px solid var(--color-accent-primary, #2563eb);
 
   background: var(--dt-bg);
   border: 1px solid var(--dt-border-color);
@@ -378,6 +378,10 @@ const hasCellSlot = (columnKey: string): boolean => {
 }
 
 /* Body */
+.data-table__body {
+  background: var(--dt-row-bg);
+}
+
 .data-table__cell {
   padding: var(--dt-cell-padding);
   border-bottom: 1px solid var(--dt-border-color);
@@ -429,7 +433,7 @@ const hasCellSlot = (columnKey: string): boolean => {
   height: 16px;
   width: 75%;
   background: var(--dt-skeleton-color);
-  border-radius: 4px;
+  border-radius: var(--radius-sm, 4px);
   animation: pulse 1.5s ease-in-out infinite;
 }
 
@@ -453,19 +457,23 @@ const hasCellSlot = (columnKey: string): boolean => {
   }
 }
 
-/* Dark mode via .dark class */
-:global(.dark) .data-table {
-  --dt-bg: #1f2937;
-  --dt-border-color: #374151;
-  --dt-header-bg: #111827;
-  --dt-header-color: #d1d5db;
-  --dt-row-hover-bg: #374151;
-  --dt-row-stripe-bg: #1a2332;
-  --dt-text-color: #f9fafb;
-  --dt-empty-color: #9ca3af;
-  --dt-sort-active-color: #60a5fa;
-  --dt-focus-ring: 2px solid #60a5fa;
-  --dt-skeleton-color: #374151;
-}
 
+</style>
+
+<style>
+/* Dark mode — unscoped so ancestor .dark selector works correctly */
+.dark .data-table {
+  --dt-bg: var(--color-surface-base, #131c2e);
+  --dt-border-color: var(--color-border-default, #243358);
+  --dt-header-bg: var(--color-surface-raised, #1a2540);
+  --dt-header-color: var(--color-text-secondary, #93baf5);
+  --dt-row-bg: var(--color-surface-base, #131c2e);
+  --dt-row-hover-bg: var(--color-surface-hover, #1f2b47);
+  --dt-row-stripe-bg: #161f35;
+  --dt-text-color: var(--color-text-primary, #e8eef8);
+  --dt-empty-color: var(--color-text-muted, #6b87b8);
+  --dt-sort-active-color: var(--color-accent-hover, #5b8fe8);
+  --dt-focus-ring: 2px solid var(--color-accent-hover, #5b8fe8);
+  --dt-skeleton-color: var(--color-border-default, #243358);
+}
 </style>

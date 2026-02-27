@@ -101,19 +101,20 @@ const formattedValue = computed(() => {
 <style scoped>
 /* CSS Variables for theming — consumers can override these */
 .stat-card {
-  --stat-card-bg: #dbeafe;
-  --stat-card-border: #93c5fd;
-  --stat-card-radius: 0.75rem;
+  --stat-card-bg: var(--color-surface-base, #dce9fb);
+  --stat-card-border: var(--color-border-default, #83b4f0);
+  --stat-card-radius: var(--radius-2xl, 0.75rem);
   --stat-card-padding: 1.5rem;
-  --stat-card-shadow: 0 1px 3px rgba(29, 78, 216, 0.12);
-  --stat-card-title-color: #1e3a5f;
-  --stat-card-value-color: #111827;
-  --stat-card-trend-up: #065f46;
-  --stat-card-trend-down: #991b1b;
-  --stat-card-trend-neutral: #374151;
-  --stat-card-skeleton: #bfdbfe;
-  --stat-card-hover-bg: #bfdbfe;
-  --stat-card-active-bg: #93c5fd;
+  --stat-card-shadow: 0 1px 3px rgba(37, 99, 235, 0.12);
+  --stat-card-title-color: var(--color-text-muted, #4b5563);
+  --stat-card-value-color: var(--color-text-primary, #111827);
+  --stat-card-trend-up: #0a4a34;
+  --stat-card-trend-down: #8b1a1a;
+  --stat-card-trend-neutral: var(--color-text-muted, #4b5563);
+  --stat-card-skeleton: var(--color-surface-hover, #b8d4f8);
+  --stat-card-hover-bg: var(--color-surface-hover, #b8d4f8);
+  --stat-card-active-bg: var(--color-border-default, #83b4f0);
+  --stat-card-focus-ring: var(--color-accent-hover, #1a4db8);
 
   background: var(--stat-card-bg);
   border: 1px solid var(--stat-card-border);
@@ -166,7 +167,7 @@ const formattedValue = computed(() => {
 .stat-card--clickable:hover,
 .stat-card--clickable:focus-visible {
   background: var(--stat-card-hover-bg);
-  outline: 2px solid var(--stat-card-trend-up);
+  outline: 2px solid var(--stat-card-focus-ring);
   outline-offset: 2px;
 }
 
@@ -183,7 +184,7 @@ const formattedValue = computed(() => {
 
 .skeleton {
   background: var(--stat-card-skeleton);
-  border-radius: 4px;
+  border-radius: var(--radius-sm, 4px);
   animation: pulse 1.5s ease-in-out infinite;
 }
 
@@ -228,18 +229,23 @@ const formattedValue = computed(() => {
   }
 }
 
-/* Dark mode via .dark class */
-:global(.dark) .stat-card {
-  --stat-card-bg: #1f2937;
-  --stat-card-border: #374151;
-  --stat-card-title-color: #9ca3af;
-  --stat-card-value-color: #f9fafb;
-  --stat-card-trend-up: #10b981;
-  --stat-card-trend-down: #ef4444;
-  --stat-card-trend-neutral: #9ca3af;
-  --stat-card-skeleton: #374151;
-  --stat-card-hover-bg: #374151;
-  --stat-card-active-bg: #4b5563;
-}
 
+</style>
+
+<style>
+/* Dark mode via .dark class — unscoped so ancestor selector works correctly */
+.dark .stat-card {
+  --stat-card-bg: var(--color-surface-base, #131c2e);
+  --stat-card-border: var(--color-border-default, #243358);
+  --stat-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --stat-card-title-color: var(--color-text-muted, #6b87b8);
+  --stat-card-value-color: var(--color-text-primary, #e8eef8);
+  --stat-card-trend-up: #4dd4a0;
+  --stat-card-trend-down: #f08080;
+  --stat-card-trend-neutral: var(--color-text-muted, #6b87b8);
+  --stat-card-skeleton: var(--color-border-default, #243358);
+  --stat-card-hover-bg: var(--color-surface-hover, #1f2b47);
+  --stat-card-active-bg: var(--color-surface-raised, #1a2540);
+  --stat-card-focus-ring: var(--color-accent-hover, #5b8fe8);
+}
 </style>

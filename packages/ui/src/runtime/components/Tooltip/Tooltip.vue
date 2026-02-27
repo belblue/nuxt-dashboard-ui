@@ -154,7 +154,7 @@ function onTouchStart() {
   --tooltip-shadow: 0 4px 14px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
   --tooltip-font-size: 0.8125rem;
   --tooltip-padding: 0.5rem 0.75rem;
-  --tooltip-radius: 8px;
+  --tooltip-radius: var(--radius-xl, 0.5rem);
   --tooltip-arrow-size: 6px;
   --tooltip-offset: 10px;
   --tooltip-max-width: 260px;
@@ -285,11 +285,14 @@ function onTouchStart() {
   }
 }
 
-/* Dark mode via .dark class */
-:global(.dark) .tooltip {
-  --tooltip-bg: #f1f5f9;
-  --tooltip-color: #0f172a;
+
+</style>
+
+<style>
+/* Dark mode — unscoped so ancestor .dark selector works correctly */
+.dark .tooltip {
+  --tooltip-bg: var(--color-text-primary, #e8eef8);
+  --tooltip-color: var(--color-surface-base, #131c2e);
   --tooltip-shadow: 0 4px 14px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
-
 </style>

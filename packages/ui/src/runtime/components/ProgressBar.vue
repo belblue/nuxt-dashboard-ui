@@ -55,6 +55,17 @@ const classVariant = computed(()=>{
 </template>
 <style scoped>
 .progress-bar {
+  --pg-track-bg: var(--color-surface-hover, #b8d4f8);
+  --pg-track-radius: var(--radius-sm, 4px);
+  --pg-fill-default: var(--color-accent-primary, #2563eb);
+  --pg-fill-success: #2dba89;
+  --pg-fill-warning: #f0b429;
+  --pg-fill-danger: #e85454;
+  --pg-fill-radius: var(--radius-sm, 4px);
+  --pg-label-color: var(--color-text-primary, #111827);
+  --pg-indeterminate-from: var(--color-accent-hover, #1a4db8);
+  --pg-indeterminate-mid: var(--color-accent-primary, #2563eb);
+
   width: 100%;
 }
 
@@ -62,35 +73,37 @@ const classVariant = computed(()=>{
   display: flex;
   justify-content: space-between;
   font-size: 0.875rem;
+  color: var(--pg-label-color);
   margin-bottom: 0.25rem;
 }
 
 .progress-bar__track {
   height: 8px;
-  background: #93c5fd;
-  border-radius: 4px;
+  background: var(--pg-track-bg);
+  border-radius: var(--pg-track-radius);
   overflow: hidden;
 }
 
 .progress-bar__fill {
   height: 100%;
-  border-radius: 4px;
+  background: var(--pg-fill-default);
+  border-radius: var(--pg-fill-radius);
   transition: width 0.3s ease;
 }
 
 .progress-bar--success {
-  background: #10b981;
+  background: var(--pg-fill-success);
 }
 .progress-bar--warning {
-  background: #f59e0b;
+  background: var(--pg-fill-warning);
 }
 .progress-bar--danger {
-  background: #ef4444;
+  background: var(--pg-fill-danger);
 }
 
 .progress-bar__fill--indeterminate {
   width: 50% !important;
-  background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 50%, #1d4ed8 100%);
+  background: linear-gradient(90deg, var(--pg-indeterminate-from) 0%, var(--pg-indeterminate-mid) 50%, var(--pg-indeterminate-from) 100%);
   animation: indeterminate-slide 1.5s ease-in-out infinite;
 }
 
@@ -113,14 +126,18 @@ const classVariant = computed(()=>{
     animation: none;
   }
 }
+</style>
 
-/* Dark mode via .dark class */
-:global(.dark) .progress-bar__track {
-  background: #374151;
+<style>
+/* Dark mode — unscoped so ancestor .dark selector works correctly */
+.dark .progress-bar {
+  --pg-track-bg: var(--color-surface-raised, #1a2540);
+  --pg-fill-default: var(--color-accent-primary, #3b6fd4);
+  --pg-fill-success: #0d7a5a;
+  --pg-fill-warning: #b87d00;
+  --pg-fill-danger: #b83333;
+  --pg-label-color: var(--color-text-primary, #e8eef8);
+  --pg-indeterminate-from: #243358;
+  --pg-indeterminate-mid: var(--color-accent-primary, #3b6fd4);
 }
-
-:global(.dark) .progress-bar__label {
-  color: #f9fafb;
-}
-
 </style>

@@ -56,10 +56,10 @@ const slots = defineSlots<{
 .empty-state {
   --empty-state-padding: 2.5rem 1.5rem;
   --empty-state-gap: 0.75rem;
-  --empty-state-icon-color: #374151;
+  --empty-state-icon-color: var(--color-text-muted, #4b5563);
   --empty-state-icon-size: 3rem;
-  --empty-state-title-color: #111827;
-  --empty-state-desc-color: #374151;
+  --empty-state-title-color: var(--color-text-primary, #111827);
+  --empty-state-desc-color: var(--color-text-muted, #4b5563);
 
   display: flex;
   flex-direction: column;
@@ -93,11 +93,14 @@ const slots = defineSlots<{
   margin-top: 0.25rem;
 }
 
-/* Dark mode via .dark class */
-:global(.dark) .empty-state {
-  --empty-state-icon-color: #9ca3af;
-  --empty-state-title-color: #f9fafb;
-  --empty-state-desc-color: #9ca3af;
-}
 
+</style>
+
+<style>
+/* Dark mode — unscoped so ancestor .dark selector works correctly */
+.dark .empty-state {
+  --empty-state-icon-color: var(--color-text-muted, #6b87b8);
+  --empty-state-title-color: var(--color-text-primary, #e8eef8);
+  --empty-state-desc-color: var(--color-text-muted, #6b87b8);
+}
 </style>

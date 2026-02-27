@@ -121,14 +121,14 @@ const showSkeleton = computed(() => {
 
 <style scoped>
 .skeleton-loader {
-  --skeleton-bg: #e5e7eb;
-  --skeleton-highlight: #f3f4f6;
-  --skeleton-radius: 4px;
+  --skeleton-bg: var(--color-surface-hover, #b8d4f8);
+  --skeleton-highlight: var(--color-surface-base, #dce9fb);
+  --skeleton-radius: var(--radius-sm, 4px);
   --skeleton-text-height: 16px;
   --skeleton-circle-size: 40px;
   --skeleton-rect-height: 100px;
   --skeleton-card-height: 160px;
-  --skeleton-card-radius: 0.75rem;
+  --skeleton-card-radius: var(--radius-2xl, 0.75rem);
   --skeleton-gap: 0.5rem;
 
   display: flex;
@@ -156,7 +156,7 @@ const showSkeleton = computed(() => {
 .skeleton-loader__item--circle {
   width: var(--skeleton-circle-size);
   height: var(--skeleton-circle-size);
-  border-radius: 50%;
+  border-radius: var(--radius-circle, 50%);
 }
 
 .skeleton-loader__item--rect {
@@ -206,10 +206,13 @@ const showSkeleton = computed(() => {
   }
 }
 
-/* Dark mode via .dark class — :global() needed because .dark is on an ancestor outside scoped scope */
-:global(.dark) .skeleton-loader {
-  --skeleton-bg: #374151;
-  --skeleton-highlight: #4b5563;
-}
 
+</style>
+
+<style>
+/* Dark mode — unscoped so ancestor .dark selector works correctly */
+.dark .skeleton-loader {
+  --skeleton-bg: var(--color-border-default, #243358);
+  --skeleton-highlight: var(--color-border-accent, #2d4270);
+}
 </style>

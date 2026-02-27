@@ -77,23 +77,23 @@ defineSlots<{
 <style scoped>
 /* CSS Variables for theming — consumers can override these */
 .badge {
-  --badge-default-bg: #dbeafe;
-  --badge-default-color: #1e3a5f;
-  --badge-default-border: #60a5fa;
-  --badge-success-bg: #d1fae5;
-  --badge-success-color: #065f46;
-  --badge-success-border: #34d399;
-  --badge-warning-bg: #fef3c7;
-  --badge-warning-color: #92400e;
-  --badge-warning-border: #fbbf24;
-  --badge-danger-bg: #fee2e2;
-  --badge-danger-color: #991b1b;
-  --badge-danger-border: #f87171;
-  --badge-info-bg: #dbeafe;
-  --badge-info-color: #1e40af;
-  --badge-info-border: #60a5fa;
-  --badge-radius: 6px;
-  --badge-pill-radius: 9999px;
+  --badge-default-bg: var(--color-surface-base, #dce9fb);
+  --badge-default-color: var(--color-text-secondary, #0f3080);
+  --badge-default-border: var(--color-border-default, #83b4f0);
+  --badge-success-bg: #d6f5ec;
+  --badge-success-color: #0a4a34;
+  --badge-success-border: #2dba89;
+  --badge-warning-bg: #fef3d0;
+  --badge-warning-color: #7a4a00;
+  --badge-warning-border: #f0b429;
+  --badge-danger-bg: #fde8e8;
+  --badge-danger-color: #8b1a1a;
+  --badge-danger-border: #e85454;
+  --badge-info-bg: #e0f0ff;
+  --badge-info-color: var(--color-accent-hover, #1a4db8);
+  --badge-info-border: var(--color-border-accent, #4e8fe3);
+  --badge-radius: var(--radius-lg, 0.375rem);
+  --badge-pill-radius: var(--radius-pill, 9999px);
 
   display: inline-flex;
   align-items: center;
@@ -186,7 +186,7 @@ defineSlots<{
 .badge__dot {
   width: 0.5rem;
   height: 0.5rem;
-  border-radius: 50%;
+  border-radius: var(--radius-circle, 50%);
   background: currentColor;
   flex-shrink: 0;
 }
@@ -226,26 +226,29 @@ defineSlots<{
 .badge__dismiss:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 1px;
-  border-radius: 2px;
+  border-radius: var(--radius-xs, 2px);
 }
 
-/* Dark mode via .dark class */
-:global(.dark) .badge {
-  --badge-default-bg: #1f2937;
-  --badge-default-color: #e5e7eb;
-  --badge-default-border: #4b5563;
-  --badge-success-bg: #052e16;
-  --badge-success-color: #6ee7b7;
-  --badge-success-border: #059669;
-  --badge-warning-bg: #451a03;
-  --badge-warning-color: #fcd34d;
-  --badge-warning-border: #d97706;
-  --badge-danger-bg: #450a0a;
-  --badge-danger-color: #fca5a5;
-  --badge-danger-border: #dc2626;
-  --badge-info-bg: #172554;
-  --badge-info-color: #93c5fd;
-  --badge-info-border: #3b82f6;
-}
 
+</style>
+
+<style>
+/* Dark mode — unscoped so ancestor .dark selector works correctly */
+.dark .badge {
+  --badge-default-bg: var(--color-surface-raised, #1a2540);
+  --badge-default-color: var(--color-text-secondary, #93baf5);
+  --badge-default-border: var(--color-border-accent, #2d4270);
+  --badge-success-bg: #092d22;
+  --badge-success-color: #4dd4a0;
+  --badge-success-border: #0d7a5a;
+  --badge-warning-bg: #2e1a00;
+  --badge-warning-color: #f5c440;
+  --badge-warning-border: #b87d00;
+  --badge-danger-bg: #2e0d0d;
+  --badge-danger-color: #f08080;
+  --badge-danger-border: #b83333;
+  --badge-info-bg: #162038;
+  --badge-info-color: #6baaf0;
+  --badge-info-border: var(--color-accent-primary, #2563eb);
+}
 </style>

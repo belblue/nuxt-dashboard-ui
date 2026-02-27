@@ -146,7 +146,7 @@ const activeTab = ref("general");
       <div class="skeleton-demo">
         <h3>Hydration-first</h3>
         <DSkeletonLoader variant="card" hydrate>
-          <p style="padding: 1rem; background: #d1fae5; border-radius: 0.75rem;">
+          <p style="padding: 1rem; background: #d6f5ec; border-radius: 0.75rem;">
             This content appeared after hydration!
           </p>
         </DSkeletonLoader>
@@ -338,19 +338,87 @@ const activeTab = ref("general");
         <template #panel-reports><p>Generated reports list.</p></template>
       </DTabs>
     </div>
+
+    <h2>Dropdown</h2>
+    <div class="dropdown-demos">
+      <DDropdown
+        :items="[
+          { key: 'edit', label: 'Edit' },
+          { key: 'duplicate', label: 'Duplicate' },
+          { key: 'delete', label: 'Delete', divider: true },
+        ]"
+        @select="(item) => console.log('Selected:', item.key)"
+      >
+        <button class="demo-btn">Actions</button>
+      </DDropdown>
+
+      <DDropdown
+        :items="[
+          { key: 'view', label: 'View' },
+          { key: 'edit', label: 'Edit', disabled: true },
+          { key: 'delete', label: 'Delete' },
+        ]"
+      >
+        <button class="demo-btn">With Disabled</button>
+      </DDropdown>
+
+      <DDropdown
+        :items="[
+          { key: 'profile', label: 'Profile' },
+          { key: 'settings', label: 'Settings' },
+          { key: 'logout', label: 'Log out', divider: true },
+        ]"
+        align="end"
+      >
+        <button class="demo-btn">Align End</button>
+      </DDropdown>
+
+      <DDropdown
+        :items="[
+          { key: 'a', label: 'Option A' },
+          { key: 'b', label: 'Option B' },
+        ]"
+        placement="top"
+      >
+        <button class="demo-btn">Top Placement</button>
+      </DDropdown>
+
+      <DDropdown>
+        <button class="demo-btn">Filter</button>
+        <template #content="{ close }">
+          <div style="width: 200px">
+            <p style="margin: 0 0 0.5rem; font-weight: 600;">Filters</p>
+            <label style="display: block; margin-bottom: 0.25rem;">
+              <input type="checkbox" /> Active
+            </label>
+            <label style="display: block; margin-bottom: 0.5rem;">
+              <input type="checkbox" /> Archived
+            </label>
+            <button class="demo-btn" style="width: 100%;" @click="close">Apply</button>
+          </div>
+        </template>
+      </DDropdown>
+
+      <DDropdown
+        :items="[{ key: 'a', label: 'Option A' }]"
+        disabled
+      >
+        <button class="demo-btn" disabled>Disabled</button>
+      </DDropdown>
+    </div>
   </div>
 </template>
 
 <style>
 .playground {
   padding: 2rem;
-  background: #eff6ff;
+  background: #f0f7ff;
   min-height: 100vh;
   transition: background 0.3s, color 0.3s;
 }
 
 .playground.dark {
-  background: #111827;
+  background: #0d1117;
 }
 
 .playground__header {
@@ -366,7 +434,7 @@ const activeTab = ref("general");
 }
 
 .playground.dark h1 {
-  color: #f9fafb;
+  color: #e8eef8;
 }
 
 .theme-toggle {
@@ -379,7 +447,7 @@ const activeTab = ref("general");
 }
 
 .theme-toggle:focus-visible {
-  outline: 2px solid #1d4ed8;
+  outline: 2px solid #2563eb;
   outline-offset: 2px;
 }
 
@@ -442,7 +510,7 @@ const activeTab = ref("general");
 
 .theme-toggle--dark .theme-toggle__thumb {
   left: calc(100% - 26px);
-  background: #1f2937;
+  background: #131c2e;
 }
 
 .cards-grid {
@@ -458,7 +526,7 @@ const activeTab = ref("general");
 }
 
 .playground.dark h2 {
-  color: #f9fafb;
+  color: #e8eef8;
 }
 
 .badges-grid {
@@ -475,23 +543,23 @@ const activeTab = ref("general");
 }
 
 .skeleton-demo {
-  background: #dbeafe;
+  background: #dce9fb;
   border-radius: 0.75rem;
   padding: 1rem;
 }
 
 .playground.dark .skeleton-demo {
-  background: #1f2937;
+  background: #131c2e;
 }
 
 .skeleton-demo h3 {
   margin: 0 0 0.75rem;
   font-size: 0.875rem;
-  color: #1e3a5f;
+  color: #0f3080;
 }
 
 .playground.dark .skeleton-demo h3 {
-  color: #9ca3af;
+  color: #6b87b8;
 }
 
 .empty-state-demos {
@@ -501,23 +569,23 @@ const activeTab = ref("general");
 }
 
 .empty-state-demo {
-  background: #dbeafe;
+  background: #dce9fb;
   border-radius: 0.75rem;
   padding: 1rem;
 }
 
 .playground.dark .empty-state-demo {
-  background: #1f2937;
+  background: #131c2e;
 }
 
 .empty-state-demo h3 {
   margin: 0 0 0.5rem;
   font-size: 0.875rem;
-  color: #1e3a5f;
+  color: #0f3080;
 }
 
 .playground.dark .empty-state-demo h3 {
-  color: #9ca3af;
+  color: #6b87b8;
 }
 
 .modal-demos {
@@ -525,6 +593,14 @@ const activeTab = ref("general");
   flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
+}
+
+.dropdown-demos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 2rem 0;
 }
 
 .tooltip-demos {
@@ -537,48 +613,48 @@ const activeTab = ref("general");
 
 .demo-input {
   padding: 0.5rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid #83b4f0;
   border-radius: 0.375rem;
   font-size: 0.875rem;
 }
 
 .playground.dark .demo-input {
-  background: #374151;
-  border-color: #4b5563;
-  color: #f9fafb;
+  background: #1a2540;
+  border-color: #243358;
+  color: #e8eef8;
 }
 
 .demo-text {
-  color: #1e3a5f;
+  color: #0f3080;
 }
 
 .playground.dark .demo-text {
-  color: #d1d5db;
+  color: #93baf5;
 }
 
 .card-wrapper {
-  background: #dbeafe;
+  background: #dce9fb;
   border-radius: 0.75rem;
   padding: 1.5rem;
 }
 
 .playground.dark .card-wrapper {
-  background: #1f2937;
+  background: #131c2e;
 }
 
 .card-wrapper h3 {
   margin: 0 0 0.75rem;
   font-size: 0.875rem;
-  color: #1e3a5f;
+  color: #0f3080;
 }
 
 .playground.dark .card-wrapper h3 {
-  color: #9ca3af;
+  color: #6b87b8;
 }
 
 .demo-btn {
   padding: 0.5rem 1rem;
-  background: #1d4ed8;
+  background: #2563eb;
   color: #fff;
   border: none;
   border-radius: 0.375rem;
@@ -587,11 +663,11 @@ const activeTab = ref("general");
 }
 
 .demo-btn:hover {
-  background: #1e40af;
+  background: #1a4db8;
 }
 
 .demo-btn:focus-visible {
-  outline: 2px solid #1d4ed8;
+  outline: 2px solid #2563eb;
   outline-offset: 2px;
 }
 
