@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useTableSort } from './useTableSort'
 
 describe('useTableSort', () => {

@@ -23,7 +23,7 @@ interface EmptyStateProps {
 
 defineProps<EmptyStateProps>();
 
-const slots = defineSlots<{
+defineSlots<{
   /** Replaces title + description with fully custom content */
   default?: (props: {}) => any;
   /** Icon or illustration above the title */

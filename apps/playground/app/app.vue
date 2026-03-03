@@ -18,6 +18,9 @@ const showFullscreenModal = ref(false);
 
 const paginationPage = ref(1);
 const activeTab = ref("general");
+const phoneValue = ref("");
+const phoneValueGB = ref("");
+const phoneCountry = ref("");
 </script>
 <template>
   <div class="playground" :class="{ dark: isDark }">
@@ -26,8 +29,8 @@ const activeTab = ref("general");
       <button
         class="theme-toggle"
         :class="{ 'theme-toggle--dark': isDark }"
-        @click="toggleDark"
         :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+        @click="toggleDark"
       >
         <span class="theme-toggle__track">
           <svg class="theme-toggle__icon theme-toggle__icon--sun" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -249,7 +252,7 @@ const activeTab = ref("general");
       </DTooltip>
 
       <DTooltip content="Focus-only tooltip" trigger="focus">
-        <input type="text" placeholder="Focus me" class="demo-input" />
+        <input type="text" placeholder="Focus me" class="demo-input" >
       </DTooltip>
 
       <p class="demo-text">
@@ -304,6 +307,29 @@ const activeTab = ref("general");
     <h2>Pagination</h2>
     <div class="card-wrapper">
       <DPagination v-model:page="paginationPage" :total="200" :per-page="10" />
+    </div>
+
+    <h2>Progress Bar</h2>
+    <div class="card-wrapper">
+      <h3>Auto variant (color by percentage)</h3>
+      <div class="progress-demos">
+        <DProgressBar :value="20" label="Low" show-value />
+        <DProgressBar :value="55" label="Medium" show-value />
+        <DProgressBar :value="90" label="High" show-value />
+      </div>
+
+      <h3>Explicit variants</h3>
+      <div class="progress-demos">
+        <DProgressBar :value="60" variant="success" label="Success" />
+        <DProgressBar :value="60" variant="warning" label="Warning" />
+        <DProgressBar :value="60" variant="danger" label="Danger" />
+      </div>
+
+      <h3>Indeterminate</h3>
+      <DProgressBar :value="0" indeterminate label="Loading..." />
+
+      <h3>Custom max</h3>
+      <DProgressBar :value="3" :max="5" label="Steps completed" show-value />
     </div>
 
     <h2>Tabs</h2>
@@ -389,10 +415,10 @@ const activeTab = ref("general");
           <div style="width: 200px">
             <p style="margin: 0 0 0.5rem; font-weight: 600;">Filters</p>
             <label style="display: block; margin-bottom: 0.25rem;">
-              <input type="checkbox" /> Active
+              <input type="checkbox" > Active
             </label>
             <label style="display: block; margin-bottom: 0.5rem;">
-              <input type="checkbox" /> Archived
+              <input type="checkbox" > Archived
             </label>
             <button class="demo-btn" style="width: 100%;" @click="close">Apply</button>
           </div>
@@ -405,6 +431,52 @@ const activeTab = ref("general");
       >
         <button class="demo-btn" disabled>Disabled</button>
       </DDropdown>
+    </div>
+
+    <h2>Phone Input</h2>
+    <div class="phone-demos">
+      <div class="phone-demo">
+        <h3>Auto-detect locale</h3>
+        <DPhoneInput
+          v-model="phoneValue"
+          placeholder="612 345 678"
+          @update:country="(c) => phoneCountry = c"
+        />
+        <p v-if="phoneValue" class="demo-text phone-demo__output">
+          Value: <code>{{ phoneValue }}</code>
+          <span v-if="phoneCountry"> · Country: <code>{{ phoneCountry }}</code></span>
+        </p>
+      </div>
+
+      <div class="phone-demo">
+        <h3>Preset country (GB)</h3>
+        <DPhoneInput
+          v-model="phoneValueGB"
+          default-country="GB"
+          placeholder="20 7946 0958"
+        />
+        <p v-if="phoneValueGB" class="demo-text phone-demo__output">
+          Value: <code>{{ phoneValueGB }}</code>
+        </p>
+      </div>
+
+      <div class="phone-demo">
+        <h3>Disabled</h3>
+        <DPhoneInput
+          model-value="+34612345678"
+          default-country="ES"
+          disabled
+        />
+      </div>
+
+      <div class="phone-demo">
+        <h3>Read-only</h3>
+        <DPhoneInput
+          model-value="+33612345678"
+          default-country="FR"
+          readonly
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -527,6 +599,13 @@ const activeTab = ref("general");
 
 .playground.dark h2 {
   color: #e8eef8;
+}
+
+.progress-demos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .badges-grid {
@@ -669,6 +748,48 @@ const activeTab = ref("general");
 .demo-btn:focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
+}
+
+.phone-demos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.phone-demo {
+  background: #dce9fb;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.playground.dark .phone-demo {
+  background: #131c2e;
+}
+
+.phone-demo h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  color: #0f3080;
+}
+
+.playground.dark .phone-demo h3 {
+  color: #6b87b8;
+}
+
+.phone-demo__output {
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem;
+}
+
+.phone-demo__output code {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.8125rem;
+}
+
+.playground.dark .phone-demo__output code {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* Responsive */

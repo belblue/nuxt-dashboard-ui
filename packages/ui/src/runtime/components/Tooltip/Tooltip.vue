@@ -157,7 +157,7 @@ function onTouchStart() {
   --tooltip-radius: var(--radius-xl, 0.5rem);
   --tooltip-arrow-size: 6px;
   --tooltip-offset: 10px;
-  --tooltip-max-width: 260px;
+  --tooltip-max-width: clamp(200px, 80vw, 260px);
   --tooltip-z-index: 1000;
 
   position: relative;

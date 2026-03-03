@@ -291,9 +291,9 @@ const hasCellSlot = (columnKey: string): boolean => {
   --dt-header-color: var(--color-text-secondary, #0f3080);
   --dt-header-font-weight: 600;
   --dt-cell-padding: 0.75rem 1rem;
-  --dt-row-bg: var(--color-page-bg, #f0f7ff);
-  --dt-row-hover-bg: var(--color-surface-base, #dce9fb);
-  --dt-row-stripe-bg: var(--color-surface-hover, #b8d4f8);
+  --dt-row-bg: var(--color-surface-raised, #ffffff);
+  --dt-row-hover-bg: var(--color-surface-hover, #b8d4f8);
+  --dt-row-stripe-bg: var(--color-surface-base, #dce9fb);
   --dt-text-color: var(--color-text-primary, #111827);
   --dt-empty-color: var(--color-text-muted, #4b5563);
   --dt-sort-active-color: var(--color-accent-primary, #2563eb);

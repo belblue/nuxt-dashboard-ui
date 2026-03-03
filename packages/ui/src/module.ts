@@ -19,7 +19,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     prefix: "D",
   },
-  async setup(options, nuxt) {
+  async setup(options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
 
     // Auto-register all components from the components directory
@@ -36,6 +36,8 @@ export default defineNuxtModule<ModuleOptions>({
       { name: 'useSortQuerySync', from: resolve('./runtime/composables/useSortQuerySync') },
       { name: 'useTableSort', from: resolve('./runtime/composables/useTableSort') },
       { name: 'usePagination', from: resolve('./runtime/composables/usePagination') },
+      { name: 'useFocusTrap', from: resolve('./runtime/composables/useFocusTrap') },
+      { name: 'useHydrated', from: resolve('./runtime/composables/useHydrated') },
     ]);
   },
 });

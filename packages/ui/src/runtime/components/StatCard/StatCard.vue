@@ -76,9 +76,9 @@ const formattedValue = computed(() => {
     @keydown.space.prevent="handleClick"
   >
     <template v-if="loading">
-      <div class="skeleton skeleton--title"></div>
-      <div class="skeleton skeleton--value"></div>
-      <div class="skeleton skeleton--trend"></div>
+      <div class="skeleton skeleton--title"/>
+      <div class="skeleton skeleton--value"/>
+      <div class="skeleton skeleton--trend"/>
     </template>
 
     <template v-else>

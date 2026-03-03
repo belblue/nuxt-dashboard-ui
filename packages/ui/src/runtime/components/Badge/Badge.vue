@@ -33,7 +33,7 @@ interface BadgeProps {
   outline?: boolean;
 }
 
-const props = withDefaults(defineProps<BadgeProps>(), {
+withDefaults(defineProps<BadgeProps>(), {
   variant: "default",
   size: "md",
   dot: false,
