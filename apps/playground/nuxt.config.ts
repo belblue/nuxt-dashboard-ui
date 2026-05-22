@@ -2,5 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2026-01-27",
   devtools: { enabled: true },
-  modules: ["../../packages/ui/src/module"],
+  modules: [
+    process.env.VERCEL ? "nuxt-dashboard-ui" : "../../packages/ui/src/module",
+  ],
 });

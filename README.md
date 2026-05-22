@@ -2,6 +2,8 @@
 
 A Nuxt 3 component library for building dashboard and admin interfaces. Hydration-safe, accessible, fully typed, and zero CSS dependencies.
 
+> **[🔗 Live Demo](https://nuxt-dashboard-playground.vercel.app/)** — See all components in action with dark mode support
+
 ## Core Principles
 
 ### Hydration-First
@@ -1118,7 +1120,7 @@ pnpm install
 | Command | Description |
 |---------|-------------|
 | `pnpm dev:playground` | Run the playground app for testing components |
-| `npx vitest run` | Run all tests (358 tests across 16 files) |
+| `npx vitest run` | Run all tests (382 tests across 17 files) |
 | `npx vitest run --watch` | Run tests in watch mode |
 | `pnpm build` | Build the module for distribution |
 

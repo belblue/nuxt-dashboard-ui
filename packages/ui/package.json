@@ -1,6 +1,6 @@
 {
     "name": "nuxt-dashboard-ui",
-    "version": "0.1.0",
+    "version": "0.1.6",
     "description": "A Nuxt 3 dashboard UI component library with accessible, SSR-safe, and fully themeable components",
     "type": "module",
     "license": "MIT",
@@ -18,11 +18,11 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/belenacin/nuxt-dashboard-ui"
+        "url": "https://github.com/belblue/nuxt-dashboard-ui"
     },
-    "homepage": "https://github.com/belenacin/nuxt-dashboard-ui#readme",
+    "homepage": "https://nuxt-dashboard-playground.vercel.app/",
     "bugs": {
-        "url": "https://github.com/belenacin/nuxt-dashboard-ui/issues"
+        "url": "https://github.com/belblue/nuxt-dashboard-ui/issues"
     },
     "exports": {
         ".": {
@@ -39,7 +39,7 @@
         "prepublishOnly": "pnpm build"
     },
     "peerDependencies": {
-        "nuxt": "^3.0.0"
+        "nuxt": "^3.0.0 || ^4.0.0"
     },
     "devDependencies": {}
 }
