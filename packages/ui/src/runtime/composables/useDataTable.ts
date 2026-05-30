@@ -73,16 +73,18 @@ export function useDataTable<T extends Record<string, unknown>>(
     page: page.value,
   }))
 
+  const handler = (() => {
+    if (isPaginated) {
+      const fetcher = options.fetcher as (params: FetchParams) => Promise<PaginatedResult<T>>
+      return fetcher({ sort: currentSort.value, page: page.value, perPage: perPage.value })
+    }
+    const fetcher = options.fetcher as (sort: SortState | null) => Promise<T[]>
+    return fetcher(currentSort.value)
+  }) as () => Promise<PaginatedResult<T>>
+
   const { data, status, error, refresh } = useAsyncData(
     options.key,
-    () => {
-      if (isPaginated) {
-        const fetcher = options.fetcher as (params: FetchParams) => Promise<PaginatedResult<T>>
-        return fetcher({ sort: currentSort.value, page: page.value, perPage: perPage.value })
-      }
-      const fetcher = options.fetcher as (sort: SortState | null) => Promise<T[]>
-      return fetcher(currentSort.value)
-    },
+    handler,
     {
       watch: (options.serverSort || isPaginated) ? [watchSources] : undefined,
     }

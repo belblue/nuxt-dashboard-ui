@@ -5,8 +5,8 @@
     "moduleResolution": "bundler",
     "strict": true,
     "jsx": "preserve",
-    "declaration": true,
-    "declarationMap": false,
+    "noEmit": true,
+    "declaration": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
@@ -15,5 +15,12 @@
     "lib": ["ESNext", "DOM"],
     "types": ["node"]
   },
-  "exclude": ["node_modules", "dist", ".nuxt", ".output"]
+  "include": ["packages/ui/src"],
+  "exclude": [
+    "**/node_modules",
+    "**/dist",
+    "**/.nuxt",
+    "**/.output",
+    "**/*.test.ts"
+  ]
 }

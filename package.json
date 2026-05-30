@@ -1,15 +1,15 @@
 {
-  "name": "nuxt-dashboard-ui",
+  "name": "nuxt-dashboard-ui-monorepo",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@10.28.1",
   "scripts": {
-    "dev": "pnpm --filter nuxt-dashboard-ui dev",
-    "build": "pnpm --filter nuxt-dashboard-ui build",
-    "dev:playground": "pnpm --filter playground dev",
+    "dev": "pnpm --filter ./packages/ui dev",
+    "build": "pnpm --filter ./packages/ui build",
+    "dev:playground": "pnpm --filter ./apps/playground dev",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit"
   },
   "author": "",
   "license": "MIT",

@@ -11,7 +11,7 @@ export { Tabs } from "./Tabs";
 export { Tooltip } from "./Tooltip";
 export { PhoneInput } from "./PhoneInput";
 
-export type { DataTableColumn, DataTableRow, SortDirection } from "./DataTable/types";
+export type { DataTableColumn, SortDirection, SortState } from "./DataTable/types";
 export type { DropdownItem } from "./Dropdown/types";
-export type { Tab } from "./Tabs/types";
+export type { TabItem } from "./Tabs/types";
 export type { Country, PhoneInputProps } from "./PhoneInput/types";

@@ -253,7 +253,6 @@ const hasCellSlot = (columnKey: string): boolean => {
                 class="data-table__cell"
                 :class="`data-table__cell--align-${column.align || 'left'}`"
               >
-                <!-- @vue-expect-error Dynamic slot name not resolved by Volar -->
                 <slot
                   v-if="hasCellSlot(column.key)"
                   :name="`cell-${column.key}`"
